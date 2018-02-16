@@ -1,0 +1,309 @@
+/*
+ Theme Name:   Gone World
+ Description:  Thème pour mon blog
+ Author:       Karim Morel
+ Author URI:   https://karimmorel.com
+ Template:     blankslate
+ Version:      1.0.0
+ */
+
+
+
+
+ /* Fonts */
+ body
+ {
+ 	background:#FFF;
+ 	font-family: 'Roboto', sans-serif;
+ }
+
+ @font-face {
+ 	font-family: 'geomanistregular';
+ 	src: url('font/geomanist-regular-webfont.eot');
+ 	src: url('font/geomanist-regular-webfont.eot?#iefix') format('embedded-opentype'),
+ 	url('font/geomanist-regular-webfont.woff2') format('woff2'),
+ 	url('font/geomanist-regular-webfont.woff') format('woff'),
+ 	url('font/geomanist-regular-webfont.ttf') format('truetype'),
+ 	url('font/geomanist-regular-webfont.svg#geomanistregular') format('svg');
+ 	font-weight: normal;
+ 	font-style: normal;
+
+ }
+
+
+
+
+ /* nav */
+ nav
+ {
+ 	background:transparent;
+ 	width:100%;
+ 	height:40px;
+ 	position:fixed;
+ 	top:32px;
+ 	left:0;
+ 	text-align: center;
+ 	letter-spacing: 1px;
+ 	z-index:11;
+ }
+ nav li, nav h1, nav .menu-menu-principal-container
+ {
+ 	display:inline-block;
+ }
+ #home-link
+ {
+ 	position:absolute;
+ 	left:16px;
+ 	top:0;
+ }
+ .nav-container
+ {
+ 	width:100%;
+ 	height:100%;
+ 	position:relative;
+ }
+ nav .menu-menu-principal-container
+ {
+ 	height:100%;
+ 	line-height:40px;
+ }
+ nav .menu-menu-principal-container a
+ {
+ 	padding:6px;
+ }
+ nav h1
+ {
+ 	line-height: 40px;
+ }
+ nav a
+ {
+ 	text-decoration: none;
+ 	color:white;
+ 	font: sans-serif;
+ }
+
+
+
+ /* --- HOME PAGE --- */
+
+ /* article's thumbnail container */
+
+ #thumbnail-container
+ {
+ 	width:100%;
+ 	overflow-y: hidden;
+ 	position: relative;
+ 	background:#3D444E;
+ 	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ 	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ }
+ #thumbnail-container .article-container .text-container
+ {
+ 	z-index:3;
+ 	position:absolute;
+ 	bottom:20%;
+ 	left:0;
+ 	padding:32px;
+ 	color:white;
+ }
+ #thumbnail-container .article-container .text-container h1
+ {
+ 	font-size:42px;
+ 	font-weight: 500;
+ }
+ #thumbnail-container .article-container .text-container blockquote
+ {
+ 	font-size:18px;
+ 	font-weight: 300;
+ }
+ #thumbnail-container .article-container .text-container .view-more
+ {
+ 	background:transparent;
+ 	border:1px solid white;
+ 	margin: 16px 0 16px 0;
+ 	padding:6px;
+ 	color:white;
+ 	font-size:18px;
+ 	font-weight:100;
+ 	border-radius:3px;
+ 	cursor:pointer;
+ }
+
+ /* Liste des articles */
+ #article-container
+ {
+ 	text-align: center;
+ 	margin:auto;
+ 	width:100%;
+ 	max-width:1200px;
+ 	margin-top:106px;
+ 	margin-bottom:106px;
+ }
+ #article-block
+ {
+ 	margin:auto;
+ 	width:80%;
+ 	border:3px solid black;
+ 	padding:20px;
+ 	font-size:5em;
+ 	text-align: center;
+ 	text-justify: newspaper;
+ 	letter-spacing:24px;
+ 	box-sizing: border-box;
+ }
+ #article-list
+ {
+ 	margin:32px auto 0 auto;
+ 	width:80%;
+ 	text-align:left;
+ 	display:flex;
+ }
+ #article-categories
+ {
+ 	flex:55;
+ 	float:left;
+ 	box-sizing: border-box;
+ 	border-right:3px solid black;
+ 	font-size:32px;
+ 	text-transform: uppercase;
+ 	list-style-type: none;
+ 	letter-spacing:4px;
+ 	line-height:62px;
+ }
+ #article-categories li
+ {
+ 	cursor:pointer;
+ 	padding-left:16px;
+ }
+ #article-categories li:hover
+ {
+ 	background:#F4F4F4;
+ }
+ #article-titles
+{
+	flex:45;
+	float:left;
+ 	box-sizing: border-box;
+ 	font-size:16px;
+ 	letter-spacing:4px;
+ 	text-transform: uppercase;
+ 	font-weight:100;
+ 	line-height:24px;
+ 	max-height:600px;
+ 	overflow-y: scroll;
+}
+#article-titles h2
+{
+	padding:8px 0 8px 32px;
+}
+
+
+/* Photos SouvenirsDeRoute.fr */
+
+#souvenirsderoute-div
+{
+	width:100%;
+	text-align:center;
+}
+#souvenirsderoute-div img
+{
+	width:10%;
+	box-sizing:border-box;
+	padding:8px;
+}
+
+/* Footer */
+
+footer
+{
+	width:100%;
+	background:#F4F4F4;
+	color:#999;
+	padding-top:106px;
+	margin-top:-53px;
+}
+footer blockquote
+{
+	display:block;
+	padding:16px;
+}
+#site-description
+{
+	width:100%;
+	text-align:center;
+}
+#footer-block-container
+{
+	width:auto;
+	max-width:100%;
+	margin:0 auto 46px auto;
+	display:flex;
+}
+.footer-block
+{
+	flex:1;
+	text-align:center;
+}
+.footer-block h2
+{
+	color:#333;
+	font-size:26px;
+	font-weight:500;
+	margin-bottom:48px;
+	font-family: 'geomanistregular', sans-serif;
+}
+.portrait
+{
+	width:160px;
+	border-radius:100%;
+	margin-bottom:16px;
+}
+.footer-block p
+{
+	color:#444;
+	line-height:28px;
+	font-size:22px;
+}
+.footer-block small
+{
+	color:#777;
+	font-size:16px;
+}
+.icon
+{
+	vertical-align: bottom;
+	padding:12px;
+	color:#444;
+	margin-bottom:36px;
+}
+.mail-button
+{
+	border:1px solid black;
+	padding:8px;
+	font-size:16px;
+	background:transparent;
+	cursor:pointer;
+	border-radius: 3px;
+}
+
+
+
+ /*  .sep  */
+ .sep
+ {
+ 	width:64px;
+ 	height:1px;
+ 	background:white;
+ 	margin:16px 0 16px 0;
+ }
+ footer .sep
+ {
+ 	margin:auto;
+ 	background:#999;
+ }
+ img
+ {
+ 	width:100%;
+ 	max-height:100%;
+ }
