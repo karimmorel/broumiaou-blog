@@ -130,6 +130,45 @@
  	cursor:pointer;
  }
 
+/* Slider buttons container */
+
+
+#slider-buttons
+{
+	position: absolute;
+	bottom:15%;
+	width:100%;
+}
+#slider-container
+{
+	width:100%;
+	max-width:540px;
+	margin:auto;
+	text-align: center;
+	z-index:5;
+}
+#slider-container .button-article
+{
+	height:14px;
+	width:14px;
+	margin:0 6px 0 6px;
+	background:white;
+	border-radius:100%;
+	display: inline-block;
+	cursor:pointer;
+	-webkit-transition: all 160ms ease-in-out;
+    -moz-transition: all 160ms ease-in-out;
+    -ms-transition: all 160ms ease-in-out;
+    -o-transition: all 160ms ease-in-out;
+    transition: all 160ms ease-in-out;
+}
+#slider-container .button-article:hover
+{
+	width: 20px;
+	height: 20px;
+}
+
+
  /* Liste des articles */
  #article-container
  {

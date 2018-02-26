@@ -1,6 +1,6 @@
 
 <!-- Get SouvenirsDeRoute.fr Api -->
-<?php $sdrApi = wp_remote_get('https://souvenirsderoute.fr/app_dev.php/lastpublishedpics');
+<?php $sdrApi = wp_remote_get('http://localhost/pics/web/app_dev.php/lastpublishedpics');
 $sdrObj = json_decode($sdrApi['body']);
 ?>
 
@@ -9,7 +9,7 @@ $sdrObj = json_decode($sdrApi['body']);
 			foreach($sdrObj as $s)
 			{
 				?>
-				<a href="https://souvenirsderoute.fr" target="_blank"><img src="https://souvenirsderoute.fr/uploads/non_publiee/<?php echo $s->type; ?>" alt="<?php echo $s->name; ?>"/></a>
+				<a href="https://souvenirsderoute.fr" target="_blank"><img src="http://localhost/pics/web/uploads/non_publiee/<?php echo $s->type; ?>" alt="<?php echo $s->name; ?>"/></a>
 				<?php
 			}
 			?>

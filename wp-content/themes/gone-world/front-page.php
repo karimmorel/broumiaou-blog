@@ -23,6 +23,13 @@
 				</div>
 			<?php endwhile; endif; ?>
 
+			<div id="slider-buttons">
+				<div id="slider-container">
+					<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+						<div id="button-article-<?php the_ID(); ?>" class="button-article"></div>
+					<?php endwhile; endif; ?>				
+				</div>
+			</div>
 
 		</div>
 		<div id="article-container">
