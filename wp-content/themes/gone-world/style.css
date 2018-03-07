@@ -130,43 +130,43 @@
  	cursor:pointer;
  }
 
-/* Slider buttons container */
+ /* Slider buttons container */
 
 
-#slider-buttons
-{
-	position: absolute;
-	bottom:15%;
-	width:100%;
-}
-#slider-container
-{
-	width:100%;
-	max-width:540px;
-	margin:auto;
-	text-align: center;
-	z-index:5;
-}
-#slider-container .button-article
-{
-	height:14px;
-	width:14px;
-	margin:0 6px 0 6px;
-	background:white;
-	border-radius:100%;
-	display: inline-block;
-	cursor:pointer;
-	-webkit-transition: all 160ms ease-in-out;
-    -moz-transition: all 160ms ease-in-out;
-    -ms-transition: all 160ms ease-in-out;
-    -o-transition: all 160ms ease-in-out;
-    transition: all 160ms ease-in-out;
-}
-#slider-container .button-article:hover
-{
-	width: 20px;
-	height: 20px;
-}
+ #slider-buttons
+ {
+ 	position: absolute;
+ 	bottom:15%;
+ 	width:100%;
+ }
+ #slider-container
+ {
+ 	width:100%;
+ 	max-width:540px;
+ 	margin:auto;
+ 	text-align: center;
+ 	z-index:5;
+ }
+ #slider-container .button-article
+ {
+ 	height:14px;
+ 	width:14px;
+ 	margin:0 6px 0 6px;
+ 	background:white;
+ 	border-radius:100%;
+ 	display: inline-block;
+ 	cursor:pointer;
+ 	-webkit-transition: all 160ms ease-in-out;
+ 	-moz-transition: all 160ms ease-in-out;
+ 	-ms-transition: all 160ms ease-in-out;
+ 	-o-transition: all 160ms ease-in-out;
+ 	transition: all 160ms ease-in-out;
+ }
+ #slider-container .button-article:hover
+ {
+ 	width: 20px;
+ 	height: 20px;
+ }
 
 
  /* Liste des articles */
@@ -220,9 +220,9 @@
  	background:#F4F4F4;
  }
  #article-titles
-{
-	flex:45;
-	float:left;
+ {
+ 	flex:45;
+ 	float:left;
  	box-sizing: border-box;
  	font-size:16px;
  	letter-spacing:4px;
@@ -231,101 +231,181 @@
  	line-height:24px;
  	max-height:600px;
  	overflow-y: scroll;
-}
-#article-titles h2
-{
-	padding:8px 0 8px 32px;
-}
+ }
+ #article-titles h2
+ {
+ 	padding:8px 0 8px 32px;
+ }
 
 
-/* Photos SouvenirsDeRoute.fr */
+ /* Photos SouvenirsDeRoute.fr */
 
-#souvenirsderoute-div
-{
-	width:100%;
-	text-align:center;
-}
-#souvenirsderoute-div img
-{
-	width:10%;
-	box-sizing:border-box;
-	padding:8px;
-}
+ #souvenirsderoute-div
+ {
+ 	width:100%;
+ 	text-align:center;
+ 	position:absolute;
+ 	top:-32px;
+ }
+ #souvenirsderoute-div img
+ {
+ 	width:10%;
+ 	box-sizing:border-box;
+ 	padding:8px;
+ }
 
-/* Footer */
+ /* Footer */
 
-footer
-{
-	width:100%;
-	background:#F4F4F4;
-	color:#999;
-	padding-top:106px;
-	margin-top:-53px;
-}
-footer blockquote
-{
-	display:block;
-	padding:16px;
-}
-#site-description
-{
-	width:100%;
-	text-align:center;
-}
-#footer-block-container
-{
-	width:auto;
-	max-width:100%;
-	margin:0 auto 46px auto;
-	display:flex;
-}
-.footer-block
-{
-	flex:1;
-	text-align:center;
-}
-.footer-block h2
-{
-	color:#333;
-	font-size:26px;
-	font-weight:500;
-	margin-bottom:48px;
-	font-family: 'geomanistregular', sans-serif;
-}
-.portrait
-{
-	width:160px;
-	border-radius:100%;
-	margin-bottom:16px;
-}
-.footer-block p
-{
-	color:#444;
-	line-height:28px;
-	font-size:22px;
-}
-.footer-block small
-{
-	color:#777;
-	font-size:16px;
-}
-.icon
-{
-	vertical-align: bottom;
-	padding:12px;
-	color:#444;
-	margin-bottom:36px;
-}
-.mail-button
-{
-	border:1px solid black;
-	padding:8px;
-	font-size:16px;
-	background:transparent;
-	cursor:pointer;
-	border-radius: 3px;
-}
+ footer
+ {
+ 	width:100%;
+ 	background:#F4F4F4;
+ 	color:#999;
+ 	padding-top:106px;
+ 	position:relative;
+ }
+ footer blockquote
+ {
+ 	display:block;
+ 	padding:16px;
+ }
+ #site-description
+ {
+ 	width:100%;
+ 	text-align:center;
+ }
+ #footer-block-container
+ {
+ 	width:auto;
+ 	max-width:100%;
+ 	margin:0 auto 46px auto;
+ 	display:flex;
+ }
+ .footer-block
+ {
+ 	flex:1;
+ 	text-align:center;
+ }
+ .footer-block h2
+ {
+ 	color:#333;
+ 	font-size:26px;
+ 	font-weight:500;
+ 	margin-bottom:48px;
+ 	font-family: 'geomanistregular', sans-serif;
+ }
+ .portrait
+ {
+ 	width:160px;
+ 	border-radius:100%;
+ 	margin-bottom:16px;
+ }
+ .footer-block p
+ {
+ 	color:#444;
+ 	line-height:28px;
+ 	font-size:22px;
+ }
+ .footer-block small
+ {
+ 	color:#777;
+ 	font-size:16px;
+ }
+ .icon
+ {
+ 	vertical-align: bottom;
+ 	padding:12px;
+ 	color:#444;
+ 	margin-bottom:36px;
+ }
+ .mail-button
+ {
+ 	border:1px solid black;
+ 	padding:8px;
+ 	font-size:16px;
+ 	background:transparent;
+ 	cursor:pointer;
+ 	border-radius: 3px;
+ }
 
+
+
+ /* Article Pagr */
+
+ #main-photo
+ {
+ 	width:100%;
+ 	position:relative;
+ 	height:500px;
+ 	overflow-y: hidden;
+ 	background-position: center;
+ 	background-size: cover;
+ 	z-index:-1;
+ }
+ #article-content
+ {
+ 	background:rgb(250,250,250);
+ 	padding-bottom:96px;
+ 	border-radius: 3px;
+ 	border-top:3px solid black;
+ }
+ #article-title
+ {
+ 	width:90%;
+ 	max-width: 1000px;
+ 	margin: auto;
+ 	margin-top:-64px;
+ 	border:3px solid black;
+ 	padding:16px;
+ 	text-align: center;
+ 	z-index:3;
+ 	background:white;
+ 	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ 	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ }
+ #article-title h1
+ {
+ 	color:black;
+ 	font-size:4rem;
+ 	text-transform: uppercase;
+ 	line-height:5rem;
+ }
+ #article-text
+ {
+ 	width:90%;
+ 	max-width: 1200px;
+ 	margin:auto;
+ 	margin-top:64px;
+ 	font-size:20px;
+ 	color:rgb(42,42,42);
+ 	line-height:36px;
+ 	font-family: 'geomanistregular';
+ 	padding:64px;
+ 	box-sizing: border-box;
+ 	background:white;
+ 	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ 	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+ }
+ #article-text h2
+ {
+ 	margin-top:16px;
+ 	margin-bottom:8px;
+ 	font-size:32px;
+ 	color:black;
+ 	line-height:48px;
+ }
+ #article-text img
+ {
+ 	margin:24px 0 0px 0;
+ }
+ #article-text .wp-caption-text
+ {
+ 	font-size:16px;
+ 	color:rgb(62,62,62);
+ 	margin:0 0 24px 0;
+ }
 
 
  /*  .sep  */
