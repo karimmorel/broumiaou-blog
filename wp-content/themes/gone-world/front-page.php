@@ -51,7 +51,11 @@
 				</div>
 				<div id="article-titles">
 					<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-						<h2 class="<?php the_category() ?>"><?php the_title() ?></h2>
+						<?php $post_id = get_the_ID();
+						$category_object = get_the_category($post_id);
+						$category_name = $category_object[0]->name; ?>
+
+						<a href="<?php the_permalink(); ?>"><h2 class="<?php echo $category_name; ?>"><?php the_title() ?></h2></a>
 					<?php endwhile; endif; ?>
 				</div>
 			</div>

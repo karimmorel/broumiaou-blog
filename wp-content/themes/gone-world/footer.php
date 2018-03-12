@@ -4,13 +4,13 @@
 
 
 // Récupérer les photos en local ou sur le site en ligne
-$sdrApi = wp_remote_get('http://localhost/pics/web/app_dev.php/lastpublishedpics');
-// $sdrApi = wp_remote_get('https://souvenirsderoute.fr/app_dev.php/lastpublishedpics');
+// $sdrApi = wp_remote_get('http://localhost/pics/web/app_dev.php/lastpublishedpics');
+$sdrApi = wp_remote_get('https://souvenirsderoute.fr/app_dev.php/lastpublishedpics');
 
 
 //Lien vers les photos en local ou sur le site en ligne
-$picsLink = 'http://localhost/pics/web/uploads/non_publiee/';
-// $picsLink = 'https://souvenirsderoute.fr/uploads/non_publiee/';
+// $picsLink = 'http://localhost/pics/web/uploads/non_publiee/';
+$picsLink = 'https://souvenirsderoute.fr/uploads/non_publiee/';
 
 
 $sdrObj = json_decode($sdrApi['body']);
@@ -38,7 +38,7 @@ $sdrObj = json_decode($sdrApi['body']);
 				<h2>Qu'est-ce que je fais</h2>
 				<a href="https://souvenirsderoute.fr/" target="_blank"><i class="icon fas fa-camera fa-3x"></i></a>
 				<a href="https://www.youtube.com/channel/UCbFB4IHyLqwcz_VVKAaJbaw/videos" target="_blank"><i class="icon fab fa-youtube fa-3x"></i></a>
-				<a href="#" target="_blank"><i class="icon fab fa-instagram fa-3x"></i></a>
+				<a href="https://www.instagram.com/insta_rimka/" target="_blank"><i class="icon fab fa-instagram fa-3x"></i></a>
 				<p><small>Je fais des vidéos, des sites internet et j'en profite pour voir le monde.</small></p>
 			</div>
 			<div class="footer-block">

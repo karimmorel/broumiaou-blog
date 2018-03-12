@@ -29,7 +29,10 @@
  	font-style: normal;
 
  }
-
+button
+{
+	outline: none;
+}
 
 
 
@@ -55,6 +58,9 @@
  	position:absolute;
  	left:16px;
  	top:0;
+ 	background:white;
+ 	border:2px solid black;
+ 	padding:0 12px 0 12px;
  }
  .nav-container
  {
@@ -78,7 +84,7 @@
  nav a
  {
  	text-decoration: none;
- 	color:white;
+ 	color:black;
  	font: sans-serif;
  }
 
@@ -232,6 +238,15 @@
  	max-height:600px;
  	overflow-y: scroll;
  }
+ #article-titles a
+ {
+ 	text-decoration: none;
+ 	color:black;
+ }
+ #article-titles a:hover
+ {
+ 	background:black;
+ }
  #article-titles h2
  {
  	padding:8px 0 8px 32px;
@@ -251,7 +266,8 @@
  {
  	width:10%;
  	box-sizing:border-box;
- 	padding:8px;
+ 	margin:8px;
+ 	border:1px solid #666;
  }
 
  /* Footer */
