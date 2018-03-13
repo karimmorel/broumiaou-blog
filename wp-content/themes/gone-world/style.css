@@ -372,6 +372,7 @@ button
  	margin: auto;
  	margin-top:-64px;
  	border:3px solid black;
+ 	box-sizing: border-box;
  	padding:16px;
  	text-align: center;
  	z-index:3;
@@ -442,3 +443,70 @@ button
  	width:100%;
  	max-height:100%;
  }
+
+/* Media Queries (700px) */
+
+@media screen and (max-width: 700px) {
+  #article-block h1
+  {
+  	font-size:12px;
+  }
+  #article-block
+  {
+  	text-align: center;
+  }
+  #article-categories li
+  {
+  	font-size:12px;
+  	line-height:24px;
+  }
+  #article-titles a
+  {
+  	font-size:12px;
+  	line-height:20px;
+  }
+  #footer-block-container
+  {
+  	display:block;
+  }
+  .footer-block
+  {
+  	display:block;
+  	width:90%;
+  	margin:auto;
+  	margin-bottom:60px;
+  }
+  #souvenirsderoute-div img
+  {
+  	width:25%;
+  	margin:2px;
+  }
+  #souvenirsderoute-div
+  {
+  	top:-64px;
+  }
+  #thumbnail-container .article-container .text-container h1
+  {
+  	font-size:24px;
+  }
+  #thumbnail-container .article-container .text-container blockquote
+  {
+  	font-size:14px;
+  	line-height:22px;
+  }
+  #article-title h1
+  {
+  	font-size:18px;
+  	line-height:28px;
+  }
+  #article-title
+  {
+  	margin-top:-24px;
+  }
+  #article-text
+  {
+  	font-size:16px;
+  	line-height:28px;
+  	padding:26px;
+  }
+}
