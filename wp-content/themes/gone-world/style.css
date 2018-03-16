@@ -509,4 +509,17 @@ button
   	line-height:28px;
   	padding:26px;
   }
+  #slider-buttons
+  {
+    bottom:12px;
+  }
+  #thumbnail-container .article-container .text-container
+  {
+    bottom:24px;
+    margin-bottom:0px;
+  }
+  .text-container .sep
+  {
+    margin:12px 0 12px 0;
+  }
 }
