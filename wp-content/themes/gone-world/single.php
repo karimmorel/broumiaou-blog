@@ -43,20 +43,19 @@ if (!empty($previous_post)){
 					<div id="article-more">
 
 
-
-						<?php if (!empty($previous_post)) : ?>
-							<a href="<?php echo esc_url(get_permalink($previous_post->ID)); ?>"><div id="article-more-prev" class="article-more-bloc">
+						<?php if (!empty ($next_post)) : ?>
+							<a href="<?php echo esc_url(get_permalink($next_post->ID)); ?>"><div id="article-more-next" class="article-more-bloc">
 								<div class="article-more-text-container">
-									<h2><?php echo $previous_post->post_title; ?></h2><blockquote>Article Précédent</blockquote>
+									<h2><?php echo $next_post->post_title; ?></h2><blockquote>Article Suivant</blockquote>
 								</div>
 							</div></a>
 						<?php endif; ?>
 
 
-						<?php if (!empty ($next_post)) : ?>
-							<a href="<?php echo esc_url(get_permalink($next_post->ID)); ?>"><div id="article-more-next" class="article-more-bloc">
+						<?php if (!empty($previous_post)) : ?>
+							<a href="<?php echo esc_url(get_permalink($previous_post->ID)); ?>"><div id="article-more-prev" class="article-more-bloc">
 								<div class="article-more-text-container">
-									<h2><?php echo $next_post->post_title; ?></h2><blockquote>Article Suivant</blockquote>
+									<h2><?php echo $previous_post->post_title; ?></h2><blockquote>Article Précédent</blockquote>
 								</div>
 							</div></a>
 						<?php endif; ?>
