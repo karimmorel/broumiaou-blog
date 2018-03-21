@@ -4,13 +4,13 @@
 
 
 // Récupérer les photos en local ou sur le site en ligne
-// $sdrApi = wp_remote_get('http://localhost/pics/web/app_dev.php/lastpublishedpics');
-$sdrApi = wp_remote_get('https://souvenirsderoute.fr/app_dev.php/lastpublishedpics');
+$sdrApi = wp_remote_get('http://localhost/pics/web/app_dev.php/lastpublishedpics');
+// $sdrApi = wp_remote_get('https://souvenirsderoute.fr/app_dev.php/lastpublishedpics');
 
 
 //Lien vers les photos en local ou sur le site en ligne
-// $picsLink = 'http://localhost/pics/web/uploads/non_publiee/';
-$picsLink = 'https://souvenirsderoute.fr/uploads/non_publiee/';
+$picsLink = 'http://localhost/pics/web/uploads/non_publiee/';
+// $picsLink = 'https://souvenirsderoute.fr/uploads/non_publiee/';
 
 
 $sdrObj = json_decode($sdrApi['body']);
