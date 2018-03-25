@@ -42,10 +42,10 @@ $sdrObj = json_decode($sdrApi['body']);
 				<p><small>Je fais des vidéos, des sites internet et j'en profite pour voir le monde.</small></p>
 			</div>
 			<div class="footer-block">
-				<h2>Me contacter</h2>
-				<i class="icon fas fa-at fa-3x"></i>
+				<h2>Me faire un bisou</h2>
+				<i class="icon fas fa-heart fa-3x"></i>
 				<br/>
-				<a href="mailto:karim-morel@outlook.fr"><button class="mail-button">Contactez-moi</button></a>
+				<a href="mailto:karim-morel@outlook.fr"><button class="mail-button">Laisse-moi un beau message</button></a>
 			</div>
 		</div>
 		<div class="sep"></div>
