@@ -4,7 +4,7 @@
  Author:       Karim Morel
  Author URI:   https://karimmorel.com
  Template:     blankslate
- Version:      1.0.0
+ Version:      1.0.1
  */
 
 
@@ -404,27 +404,69 @@
  	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+  z-index:4;
  }
- #article-text h2
+#article-text h2
+{
+  margin-top:16px;
+  margin-bottom:8px;
+  font-size:32px;
+  color:black;
+  line-height:48px;
+}
+#article-text img
+{
+  margin:24px 0 0px 0;
+}
+#article-text .wp-caption-text
+{
+  font-size:16px;
+  color:rgb(62,62,62);
+  margin:0 0 24px 0;
+}
+
+
+
+/* Div share article + more articles */
+
+ #article-share
  {
- 	margin-top:16px;
- 	margin-bottom:8px;
- 	font-size:32px;
- 	color:black;
- 	line-height:48px;
- }
- #article-text img
- {
- 	margin:24px 0 0px 0;
- }
- #article-text .wp-caption-text
- {
- 	font-size:16px;
- 	color:rgb(62,62,62);
- 	margin:0 0 24px 0;
- }
- #article-more
- {
+  background:#F5F5F5;
+  padding:0 64px 0 64px;
+  box-sizing: border-box;
+  font-family: 'geomanistregular';
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+  height:60px;
+  line-height:60px;
+  font-size:20px;
+  border-radius:0 0 3px 3px;
+  -webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+  box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
+  z-index:3;
+}
+#article-share a
+{
+  text-decoration: none;
+  padding:24px;
+  font-size:24px;
+}
+.facebook-logo
+{
+  color:#6480BA;
+}
+.twitter-logo
+{
+  color:#49A0EC;
+}
+.google-plus-logo
+{
+  color:#D04C25;
+}
+#article-more
+{
   width:90%;
   max-width:1200px;
   margin:auto;
@@ -480,6 +522,16 @@
   color:#666;
 }
 
+/* Jetpack share div */
+
+.sharedaddy
+{
+  display:inline-block;
+}
+
+
+
+
 /*  .sep  */
 .sep
 {
@@ -498,6 +550,13 @@ img
   width:100%;
   max-height:100%;
 }
+
+/* Debug Wordpress 4.9.5 */
+
+#article-text .wp-caption
+  {
+    max-width:100%;
+  }
 
 /* Media Queries (700px) */
 
@@ -589,5 +648,17 @@ img
   {
     height:200px;
     padding-top:50px;
+  }
+
+/* Debug Wordpress 4.9.5 */
+
+#article-text .wp-caption
+  {
+    max-width:100%;
+  }
+
+  #article-text .wp-caption
+  {
+    width:inherit !important;
   }
 }
