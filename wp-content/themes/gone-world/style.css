@@ -242,10 +242,13 @@
  {
  	text-decoration: none;
  	color:black;
+  background:#F6F6F6;
+  display:block;
+
  }
  #article-titles a:hover
  {
- 	background:black;
+ 	background:#EEE;
  }
  #article-titles h2
  {
@@ -259,7 +262,7 @@
  {
  	width:100%;
  	text-align:center;
- 	position:absolute;
+ 	position:relative;
  	top:-32px;
  }
  #souvenirsderoute-div img
@@ -277,7 +280,6 @@
  	width:100%;
  	background:#F4F4F4;
  	color:#999;
- 	padding-top:106px;
  	position:relative;
  }
  footer blockquote
@@ -395,6 +397,7 @@
  	margin:auto;
  	margin-top:64px;
  	font-size:20px;
+  text-align:justify;
  	color:rgb(42,42,42);
  	line-height:36px;
  	font-family: 'geomanistregular';
@@ -649,6 +652,31 @@ img
     height:200px;
     padding-top:50px;
   }
+
+
+/* Meilleur affichage liste des articles sur mobile */
+
+#article-list
+{
+  flex-direction: column;
+}
+#article-categories
+{
+  border-right:0;
+  border-bottom:3px solid #333;
+  text-align:center;
+  padding-bottom:24px;
+  font-size: 24px;
+}
+#article-titles a
+{
+  border-bottom:1px solid #EFEFEF;
+}
+#article-categories li
+{
+  padding-left: 0;
+}
+
 
 /* Debug Wordpress 4.9.5 */
 
