@@ -13,7 +13,7 @@ if (!empty($previous_post)){
 <style type="text/css">
 #main-photo
 {
-	background-image: url('<?php the_field('image_top_article'); ?>');
+	background-image: url('<?php the_field('image_article'); ?>');
 }
 <?php if (!empty($previous_post)){ ?>
 	#article-more-prev
@@ -40,7 +40,7 @@ if (!empty($previous_post)){
 					<div id="article-text">
 						<?php the_content(); ?>
 					</div>
-					<div id="article-share">
+					<!-- <div id="article-share">
 						Partager sur : 
 
 						<?php 
@@ -57,7 +57,7 @@ if (!empty($previous_post)){
 						<a href="#" class="facebook-logo"><i class="fab fa-facebook-f"></i></a>
 						<a href="#" class="twitter-logo"><i class="fab fa-twitter"></i></a>
 						<a href="#" class="google-plus-logo"><i class="fab fa-google-plus-g"></i></a>
-					</div>
+					</div> -->
 					<div id="article-more">
 
 
