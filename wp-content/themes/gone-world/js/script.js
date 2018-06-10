@@ -2,6 +2,9 @@ $ = jQuery;
 
 $(document).ready(function(){
 
+//Set Main Google Map's height
+$('#main-map').css({'height':$(window).height()});
+
 // Show first article in thumbnail container
 $('.article-container').fadeOut();
 $('.article-container').first().fadeIn();
@@ -49,5 +52,6 @@ $('#article-categories li').click(function(){
 	}
 	
 });
+
 
 });
