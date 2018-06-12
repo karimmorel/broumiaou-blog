@@ -367,7 +367,6 @@ if (!empty($previous_post)){
                $parcours_data = get_post_custom($parcours->ID);
                $parcours_list[] = array("lat_depart" => $parcours_data['lat_depart'][0], "lng_depart" => $parcours_data['lng_depart'][0], "lat_arrivee" => $parcours_data['lat_arrivee'][0], "lng_arrivee" => $parcours_data['lng_arrivee'][0]);
            }
-           print_r($parcours_list);
 
            echo 'var start = { lat : '.$parcours_list[0]['lat_depart'].', lng : '.$parcours_list[0]['lng_depart'].'};';
            echo 'var end = { lat : '.$parcours_list[0]['lat_arrivee'].', lng : '.$parcours_list[0]['lng_arrivee'].'};';
@@ -376,9 +375,10 @@ if (!empty($previous_post)){
            var directionsDisplay = new google.maps.DirectionsRenderer;
            var directionsService = new google.maps.DirectionsService;
            var map = new google.maps.Map(document.getElementById('main-map'), {
-            zoom: 10,
+            zoom: 1,
             center: start,
             disableDefaultUI: true,
+            preserveViewport: true,
             mapTypeControlOptions: {
                mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                'styled_map']
