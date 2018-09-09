@@ -374,9 +374,10 @@ if (!empty($previous_post)){
            var directionsDisplay = new google.maps.DirectionsRenderer;
            var directionsService = new google.maps.DirectionsService;
            var map = new google.maps.Map(document.getElementById('main-map'), {
-            zoom: 10,
+            zoom: 1,
             center: start,
             disableDefaultUI: true,
+            preserveViewport: true,
             mapTypeControlOptions: {
                mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                'styled_map']
