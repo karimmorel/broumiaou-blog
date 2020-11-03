@@ -10,7 +10,7 @@
   },
   "test_settings": {
     "default" : {
-      "launch_url" : "http://yoast-acf-analysis.vvv.dev",
+      "launch_url" : "http://local.wordpress.dev",
       "globals" : {
       },
       "screenshots" : {

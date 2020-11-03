@@ -56,6 +56,39 @@ module.exports = {
 
     },
 
+    'Link Field': function (browser) {
+
+        var hashUrl = 'http://' + dummyContent.hash();
+        var hashLinkText = dummyContent.hash();
+
+        browser.element('css selector', '.acf-field-link .button', function(res) {
+            if( 0 === res.status ){
+                //Open Modal
+                browser.click('.acf-field-link .button');
+            }
+        });
+
+        // Update Url
+        browser.waitForElementVisible('#wp-link-url', 1000);
+        browser
+            .clearValue( '#wp-link-url')
+            .setValue( '#wp-link-url', hashUrl );
+
+        // Update Link Text
+        browser.waitForElementVisible('#wp-link-text', 1000);
+        browser
+            .clearValue( '#wp-link-text')
+            .setValue( '#wp-link-text', hashLinkText );
+
+        // Insert Attachment (closes Modal)
+        browser.click("#wp-link-submit");
+
+        browser.pause( 15000 );
+
+        logContains( browser, 'href=\\"' + hashUrl + '\\" target=\\"\\">' + hashLinkText, browser.assert.ok );
+
+    },
+
     after : function(browser) {
         browser.end();
     }

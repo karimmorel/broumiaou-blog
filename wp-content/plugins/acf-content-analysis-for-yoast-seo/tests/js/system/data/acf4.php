@@ -1,4 +1,12 @@
 <?php
+/**
+ * ACF Content Analysis for Yoast SEO test file.
+ *
+ * @package YoastACFAnalysis
+ *
+ * {@internal This code comes straight out of the ACF Export function.}}
+ */
+
 if(function_exists("register_field_group"))
 {
 	register_field_group(array (

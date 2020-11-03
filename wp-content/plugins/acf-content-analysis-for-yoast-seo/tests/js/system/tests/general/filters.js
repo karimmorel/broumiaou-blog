@@ -1,7 +1,7 @@
-var assert = require('assert');
+/* global YoastACFAnalysisConfig */
+
 var logContains = require('../../helpers/logContains');
 var dummyContent = require('../../helpers/dummyContent');
-var simpleField = require('../../helpers/simpleField');
 
 module.exports = {
     tags: ['acf4', 'acf5', 'filters'],

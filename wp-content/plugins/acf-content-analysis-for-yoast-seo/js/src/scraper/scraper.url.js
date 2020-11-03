@@ -1,24 +1,21 @@
-var scrapers = require( "./../scraper-store.js" );
+/* global _ */
 
 var Scraper = function() {};
 
-Scraper.prototype.scrape = function(fields){
+Scraper.prototype.scrape = function( fields ) {
+	fields = _.map( fields, function( field ) {
+		if ( field.type !== "url" ) {
+			return field;
+		}
 
-    var that = this;
+		var content = field.$el.find( "input[type=url][id^=acf]" ).val();
 
-    fields = _.map(fields, function(field){
+		field.content = content ? '<a href="' + content + '">' + content + "</a>" : "";
 
-        if(field.type !== 'url'){
-            return field;
-        }
+		return field;
+	} );
 
-        field.content = field.$el.find('input[type=url][id^=acf]').val();
-
-        return field;
-    });
-
-    return fields;
-
+	return fields;
 };
 
 module.exports = Scraper;

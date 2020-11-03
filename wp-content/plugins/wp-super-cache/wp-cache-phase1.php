@@ -1,6 +1,8 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/wp-cache-phase2.php';
+if ( ! function_exists( 'wp_cache_phase2' ) ) {
+	require_once dirname( __FILE__ ) . '/wp-cache-phase2.php';
+}
 
 // error_reporting(E_ERROR | E_PARSE); // uncomment to debug this file!
 if ( ! @include WP_CONTENT_DIR . '/wp-cache-config.php' ) {
@@ -47,9 +49,35 @@ if ( is_array( $plugins ) ) {
 	}
 }
 
+if ( isset( $wpsc_plugins ) && is_array( $wpsc_plugins ) ) {
+	foreach( $wpsc_plugins as $plugin_file ) {
+		if ( file_exists( ABSPATH . $plugin_file ) ) {
+			include_once( ABSPATH . $plugin_file );
+		}
+	}
+}
+
+if (
+	file_exists( WPCACHEHOME . '../wp-super-cache-plugins/' ) &&
+	is_dir( WPCACHEHOME . '../wp-super-cache-plugins/' )
+) {
+	$plugins = glob( WPCACHEHOME . '../wp-super-cache-plugins/*.php' );
+	if ( is_array( $plugins ) ) {
+		foreach ( $plugins as $plugin ) {
+			if ( is_file( $plugin ) ) {
+				require_once $plugin;
+			}
+		}
+	}
+}
+
 $wp_start_time = microtime();
 
-if ( $wp_cache_not_logged_in && wp_cache_get_cookies_values() ) {
+if ( wpsc_is_backend() ) {
+	return true;
+}
+
+if ( wpsc_is_caching_user_disabled() ) {
 	wp_cache_debug( 'Caching disabled for logged in users on settings page.' );
 	return true;
 }
@@ -59,7 +87,6 @@ if ( isset( $wp_cache_make_known_anon ) && $wp_cache_make_known_anon ) {
 }
 
 do_cacheaction( 'cache_init' );
-
 
 if ( ! $cache_enabled || ( isset( $_SERVER['REQUEST_METHOD'] ) && in_array( $_SERVER['REQUEST_METHOD'], array( 'POST', 'PUT', 'DELETE' ) ) ) || isset( $_GET['customize_changeset_uuid'] ) ) {
 	return true;
@@ -83,18 +110,6 @@ if ( function_exists( 'add_filter' ) ) { // loaded since WordPress 4.6
 }
 
 $wp_cache_request_uri = $_SERVER['REQUEST_URI']; // Cache this in case any plugin modifies it.
-
-if ( $wp_cache_object_cache ) {
-	if ( ! include_once WP_CONTENT_DIR . '/object-cache.php' ) {
-		return;
-	}
-
-	wp_cache_init(); // Note: wp-settings.php calls wp_cache_init() which clobbers the object made here.
-
-	if ( ! is_object( $wp_object_cache ) ) {
-		return;
-	}
-}
 
 if ( defined( 'DOING_CRON' ) ) {
 	extract( wp_super_cache_init() ); // $key, $cache_filename, $meta_file, $cache_file, $meta_pathname

@@ -1,59 +1,53 @@
+/* global _ */
+
 var config = require( "./../config/config.js" );
-var scrapers = require( "./../scraper-store.js" );
 
 var Scraper = function() {};
 
-Scraper.prototype.scrape = function(fields){
+Scraper.prototype.scrape = function( fields ) {
+	var that = this;
 
-    var that = this;
+	fields = _.map( fields, function( field ) {
+		if ( field.type !== "text" ) {
+			return field;
+		}
 
-    fields = _.map(fields, function(field){
+		field.content = field.$el.find( "input[type=text][id^=acf]" ).val();
+		field = that.wrapInHeadline( field );
 
-        if(field.type !== 'text'){
-            return field;
-        }
+		return field;
+	} );
 
-        field.content = field.$el.find('input[type=text][id^=acf]').val();
-
-        field = that.wrapInHeadline(field);
-
-        return field;
-    });
-
-    return fields;
-
+	return fields;
 };
 
-Scraper.prototype.wrapInHeadline = function(field){
+Scraper.prototype.wrapInHeadline = function( field ) {
+	var level = this.isHeadline( field );
+	if ( level ) {
+		field.content = "<h" + level + ">" + field.content + "</h" + level + ">";
+	} else {
+		field.content = "<p>" + field.content + "</p>";
+	}
 
-    var level = this.isHeadline(field);
-    if(level){
-        field.content = '<h' + level + '>' + field.content + '</h' + level + '>';
-    }
-
-    return field;
+	return field;
 };
 
-Scraper.prototype.isHeadline = function(field){
+Scraper.prototype.isHeadline = function( field ) {
+	var level = _.find( config.scraper.text.headlines, function( value, key ) {
+		return field.key === key;
+	} );
 
-    var level = false;
+	// It has to be an integer
+	if ( level ) {
+		level = parseInt( level, 10 );
+	}
 
-    var level = _.find(config.scraper.text.headlines, function(value, key){
-        return field.key === key;
-    });
+	// Headlines only exist from h1 to h6
+	if ( level < 1 || level > 6 ) {
+		level = false;
+	}
 
-    //It has to be an integer
-    if(level){
-        level = parseInt(level, 10);
-    }
-
-    //Headlines only exist from h1 to h6
-    if(level<1 || level>6){
-        level = false;
-    }
-
-    return level;
-
+	return level;
 };
 
 module.exports = Scraper;

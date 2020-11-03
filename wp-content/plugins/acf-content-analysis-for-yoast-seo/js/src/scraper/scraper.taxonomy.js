@@ -1,66 +1,54 @@
-var scrapers = require( "./../scraper-store.js" );
-var helper = require( "./../helper.js" );
+/* global _, acf */
 
 var Scraper = function() {};
 
-Scraper.prototype.scrape = function(fields){
+Scraper.prototype.scrape = function( fields ) {
+	fields = _.map( fields, function( field ) {
+		if ( field.type !== "taxonomy" ) {
+			return field;
+		}
 
-    var that = this;
+		var terms = [];
 
-    fields = _.map(fields, function(field){
+		if ( field.$el.find( '.acf-taxonomy-field[data-type="multi_select"]' ).length > 0 ) {
+			var select2Target = ( acf.select2.version >= 4 ) ? "select" : "input";
 
-        if(field.type !== 'taxonomy'){
-            return field;
-        }
+			terms = _.pluck(
+				field.$el.find( '.acf-taxonomy-field[data-type="multi_select"] ' + select2Target )
+					.select2( "data" )
+				, "text"
+			);
+		} else if ( field.$el.find( '.acf-taxonomy-field[data-type="checkbox"]' ).length > 0 ) {
+			terms = _.pluck(
+				field.$el.find( '.acf-taxonomy-field[data-type="checkbox"] input[type="checkbox"]:checked' )
+					.next(),
+				"textContent"
+			);
+		} else if ( field.$el.find( "input[type=checkbox]:checked" ).length > 0 ) {
+			terms = _.pluck(
+				field.$el.find( "input[type=checkbox]:checked" )
+					.parent(),
+				"textContent"
+			);
+		} else if ( field.$el.find( "select option:checked" ).length > 0 ) {
+			terms = _.pluck(
+				field.$el.find( "select option:checked" ),
+				"textContent"
+			);
+		}
 
-        var terms = [];
+		terms = _.map( terms, function( term ) {
+			return term.trim();
+		} );
 
-        if( field.$el.find('.acf-taxonomy-field[data-type="multi_select"]').length > 0 ){
+		if ( terms.length > 0 ) {
+			field.content = "<ul>\n<li>" + terms.join( "</li>\n<li>" ) + "</li>\n</ul>";
+		}
 
-            var select2Target = (helper.acf_version >= 5.6)?'select':'input';
+		return field;
+	} );
 
-            terms = _.pluck(
-                field.$el.find('.acf-taxonomy-field[data-type="multi_select"] ' + select2Target )
-                    .select2('data')
-                , 'text'
-            );
-
-        }else if( field.$el.find('.acf-taxonomy-field[data-type="checkbox"]').length > 0 ){
-
-            terms = _.pluck(
-                field.$el.find('.acf-taxonomy-field[data-type="checkbox"] input[type="checkbox"]:checked')
-                    .next(),
-                'textContent'
-            );
-
-        }else if( field.$el.find('input[type=checkbox]:checked').length > 0 ){
-
-            terms = _.pluck(
-                field.$el.find('input[type=checkbox]:checked')
-                    .parent(),
-                'textContent'
-            );
-
-        }else if( field.$el.find('select option:checked').length > 0 ){
-
-            terms = _.pluck(
-                field.$el.find('select option:checked'),
-                'textContent'
-            );
-
-        }
-
-        terms = _.map( terms, function(term){ return term.trim(); } );
-
-        if(terms.length>0){
-            field.content = '<ul>\n<li>' + terms.join('</li>\n<li>') + '</li>\n</ul>';
-        }
-
-        return field;
-    });
-
-    return fields;
-
+	return fields;
 };
 
 module.exports = Scraper;

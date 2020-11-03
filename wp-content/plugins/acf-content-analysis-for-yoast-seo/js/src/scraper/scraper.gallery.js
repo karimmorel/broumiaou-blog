@@ -1,48 +1,40 @@
+/* global _, jQuery */
+
 var attachmentCache = require( "./../cache/cache.attachments.js" );
-var scrapers = require( "./../scraper-store.js" );
 
 var Scraper = function() {};
 
-Scraper.prototype.scrape = function(fields){
+Scraper.prototype.scrape = function( fields ) {
+	var attachment_ids = [];
 
-    var that = this;
+	fields = _.map( fields, function( field ) {
+		if ( field.type !== "gallery" ) {
+			return field;
+		}
 
-    var attachment_ids = [];
+		field.content = "";
 
-    fields = _.map(fields, function(field){
+		field.$el.find( ".acf-gallery-attachment input[type=hidden]" ).each( function() {
+			// TODO: Is this the best way to get the attachment id?
+			var attachment_id = jQuery( this ).val();
 
-        if(field.type !== 'gallery'){
-            return field;
-        }
+			// Collect all attachment ids for cache refresh
+			attachment_ids.push( attachment_id );
 
-        field.content = '';
+			// If we have the attachment data in the cache we can return a useful value
+			if ( attachmentCache.get( attachment_id, "attachment" ) ) {
+				var attachment = attachmentCache.get( attachment_id, "attachment" );
 
-        field.$el.find('.acf-gallery-attachment input[type=hidden]').each( function (index, element){
+				field.content += '<img src="' + attachment.url + '" alt="' + attachment.alt + '" title="' + attachment.title + '">';
+			}
+		} );
 
-            //TODO: Is this the best way to get the attachment id?
-            var attachment_id = jQuery( this ).val();
+		return field;
+	} );
 
-            //Collect all attachment ids for cache refresh
-            attachment_ids.push(attachment_id);
+	attachmentCache.refresh( attachment_ids );
 
-            //If we have the attachment data in the cache we can return a useful value
-            if(attachmentCache.get(attachment_id, 'attachment')){
-
-                var attachment = attachmentCache.get(attachment_id, 'attachment');
-
-                field.content += '<img src="' + attachment.url + '" alt="' + attachment.alt + '" title="' + attachment.title + '">';
-
-            }
-
-        });
-
-        return field;
-    });
-
-    attachmentCache.refresh(attachment_ids);
-
-    return fields;
-
+	return fields;
 };
 
 module.exports = Scraper;

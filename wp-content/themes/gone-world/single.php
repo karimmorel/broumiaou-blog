@@ -35,6 +35,7 @@ if (!empty($previous_post)){
 				<div id="main-map">
 				</div>
 				<div id="article-content">
+                    <div id="article-gradient"></div>
 					<div id="article-title-map">
 						<h1><?php the_title(); ?></h1>
 					</div>
@@ -42,16 +43,18 @@ if (!empty($previous_post)){
 					<div id="main-photo">
 					</div>
 					<div id="article-content">
-						<div id="article-title">
-							<h1><?php the_title(); ?></h1>
-						</div>
+                    <div id="article-gradient"></div>
+						
 					<?php } ?>
 
 
 
 
 
-
+                    <div id="article-background">
+                    <div id="article-title">
+							<h1><?php the_title(); ?></h1>
+						</div>
 					<div id="article-text">
 						<?php the_content(); ?>
 					</div>
@@ -94,7 +97,8 @@ if (!empty($previous_post)){
 						<?php endif; ?>
 
 
-					</div>
+                    </div>
+                        </div>
 				</div>
 				<!-- <?php get_template_part( 'entry' ); ?> -->
 			<?php endwhile; endif; ?>

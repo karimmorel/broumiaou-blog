@@ -1,4 +1,12 @@
 <?php
+/**
+ * ACF Content Analysis for Yoast SEO test file.
+ *
+ * @package YoastACFAnalysis
+ *
+ * {@internal This code comes straight out of the ACF Export function.}}
+ */
+
 if( function_exists('acf_add_local_field_group') ):
 
 	acf_add_local_field_group(array (
@@ -77,6 +85,22 @@ if( function_exists('acf_add_local_field_group') ):
 				),
 				'default_value' => '',
 				'placeholder' => '',
+			),
+			array (
+				'key' => 'field_59f14c1ce079d',
+				'label' => 'Link',
+				'name' => 'yoast_acf_analysis_link',
+				'type' => 'link',
+				'value' => NULL,
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'return_format' => 'array',
 			),
 			array (
 				'key' => 'field_591eb4da2be8b',

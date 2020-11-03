@@ -39,11 +39,10 @@
  /* nav */
  nav
  {
- 	background:transparent;
  	width:100%;
- 	height:40px;
+ 	height:62px;
  	position:fixed;
- 	top:32px;
+ 	top:0px;
  	left:0;
  	text-align: center;
  	letter-spacing: 1px;
@@ -55,18 +54,31 @@
  }
  #home-link
  {
- 	position:absolute;
- 	left:16px;
- 	top:0;
+	position:absolute;
+	display:block;
+	padding:0 12px 0 14px;
+	font-size:14px;
+ 	left:5%;
+ 	top:9px;
  	background:white;
  	border:2px solid black;
- 	padding:0 12px 0 12px;
  }
  .nav-container
  {
  	width:100%;
  	height:100%;
  	position:relative;
+ }
+ #front-page-title
+ {
+	 width:90%;
+	 margin:auto;
+	 padding:42px 0 42px 24px;
+	 margin-top:60px;
+ }
+ #front-page-title h1
+ {
+	 font-size:32px;
  }
  nav .menu-menu-principal-container
  {
@@ -94,9 +106,11 @@
 
  /* article's thumbnail container */
 
- #thumbnail-container
+ .thumbnail-container
  {
- 	width:100%;
+	 width:90%;
+	 margin:auto;
+	 margin-top:40px;
  	overflow-y: hidden;
  	position: relative;
  	background:#3D444E;
@@ -104,7 +118,7 @@
  	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  }
- #thumbnail-container .article-container .text-container
+ .thumbnail-container .article-container .text-container
  {
  	z-index:3;
  	position:absolute;
@@ -113,17 +127,17 @@
  	padding:32px;
  	color:white;
  }
- #thumbnail-container .article-container .text-container h1
+ .thumbnail-container .article-container .text-container h1
  {
  	font-size:42px;
  	font-weight: 500;
  }
- #thumbnail-container .article-container .text-container blockquote
+ .thumbnail-container .article-container .text-container blockquote
  {
  	font-size:18px;
  	font-weight: 300;
  }
- #thumbnail-container .article-container .text-container .view-more
+ .thumbnail-container .article-container .text-container .view-more
  {
  	background:transparent;
  	border:1px solid white;
@@ -277,9 +291,11 @@
 
  footer
  {
+	padding-top:64px;
+	padding-bottom:64px;
  	width:100%;
- 	background:#F4F4F4;
- 	color:#999;
+ 	background:#1e272e;
+ 	color:#FFF;
  	position:relative;
  }
  footer blockquote
@@ -296,7 +312,7 @@
  {
  	width:auto;
  	max-width:100%;
- 	margin:0 auto 46px auto;
+ 	margin:0 auto 0 auto;
  	display:flex;
  }
  .footer-block
@@ -306,11 +322,15 @@
  }
  .footer-block h2
  {
- 	color:#333;
+ 	color:#EEE;
  	font-size:26px;
  	font-weight:500;
  	margin-bottom:48px;
  	font-family: 'geomanistregular', sans-serif;
+ }
+ .footer-block a
+ {
+	display:inline-block;
  }
  .portrait
  {
@@ -318,27 +338,19 @@
  	border-radius:100%;
  	margin-bottom:16px;
  }
- .footer-block p
- {
- 	color:#444;
- 	line-height:28px;
- 	font-size:22px;
- }
  .footer-block small
  {
- 	color:#777;
+ 	color:#EEE;
  	font-size:16px;
  }
  .icon
  {
  	vertical-align: bottom;
  	padding:12px;
- 	color:#444;
- 	margin-bottom:36px;
+ 	color:#EEE;
  }
  .mail-button
  {
- 	border:1px solid black;
  	padding:8px;
  	font-size:16px;
  	background:transparent;
@@ -354,7 +366,7 @@
  {
  	width:100%;
  	position:relative;
- 	height:500px;
+ 	height:600px;
  	overflow-y: hidden;
  	background-position: center;
  	background-size: cover;
@@ -372,26 +384,31 @@
  }
  #article-content
  {
- 	background:rgb(250,250,250);
- 	padding-bottom:96px;
- 	border-radius: 3px;
- 	border-top:3px solid black;
+	 border-radius: 3px;
+	 position: relative;
+	 margin-top: -100px;
+ }
+ #article-gradient
+ {
+	 background:linear-gradient(rgba(248,248,248,0), rgba(248,248,248,.15), rgba(248,248,248,.4), rgba(248,248,248,.7), rgba(248,248,248,1));
+	 z-index:-1;
+	 width:100%;
+	 height:240px;
+	 margin-top:-240px;
  }
  #article-title
  {
  	width:90%;
  	max-width: 1000px;
  	margin: auto;
- 	margin-top:-64px;
+	 margin-top:-140px;
+	 margin-bottom:60px;
  	border:3px solid black;
  	box-sizing: border-box;
  	padding:16px;
  	text-align: center;
- 	z-index:3;
+ 	z-index:10;
  	background:white;
- 	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
- 	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
- 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  }
   #article-title-map
  {
@@ -407,9 +424,6 @@
   text-align: center;
   z-index:3;
   background:white;
-  -webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
-  box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  }
  #article-title h1, #article-title-map h1
  {
@@ -418,12 +432,18 @@
  	text-transform: uppercase;
  	line-height:5rem;
  }
+ #article-background
+ {
+	 margin-top:-20px;
+ 	 padding-top:64px;
+	 background:rgb(248,248,248);
+	 padding-bottom:160px;
+ }
  #article-text
  {
  	width:90%;
  	max-width: 1200px;
  	margin:auto;
- 	margin-top:64px;
  	font-size:20px;
   text-align:left;
  	color:rgb(42,42,42);
@@ -432,9 +452,6 @@
  	padding:64px;
  	box-sizing: border-box;
  	background:white;
- 	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
- 	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
-i 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
   z-index:4;
  }
 #article-text h2
@@ -465,6 +482,7 @@ i 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
   height:500px;
   margin:auto;
   background:skyblue;
+  margin:32px 0 32px 0;
 }
 
 
@@ -641,11 +659,11 @@ img
   {
   	top:-64px;
   }
-  #thumbnail-container .article-container .text-container h1
+  .thumbnail-container .article-container .text-container h1
   {
   	font-size:24px;
   }
-  #thumbnail-container .article-container .text-container blockquote
+  .thumbnail-container .article-container .text-container blockquote
   {
   	font-size:14px;
   	line-height:22px;
@@ -673,7 +691,7 @@ img
   {
     bottom:12px;
   }
-  #thumbnail-container .article-container .text-container
+  .thumbnail-container .article-container .text-container
   {
     bottom:24px;
     margin-bottom:0px;

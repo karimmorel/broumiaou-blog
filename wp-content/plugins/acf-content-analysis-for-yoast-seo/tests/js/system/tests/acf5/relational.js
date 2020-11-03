@@ -34,14 +34,14 @@ module.exports = {
 
         browser.execute(
             function() {
-                return parseFloat(YoastACFAnalysisConfig.acfVersion, 10);
+                return parseFloat(acf.select2.version, 10);
             },
             [],
             function( result ){
-                var acfVersion = result.value;
+                var select2Version = result.value;
                 var inputSelector, optionSelector, choiceSelector;
 
-                if( acfVersion >= 5.6 ){
+                if( select2Version >= 4 ){
                     inputSelector = '.acf-taxonomy-field[data-type="multi_select"][data-taxonomy="category"] .select2-search__field ';
                     optionSelector = '.select2-results__option--highlighted';
                     choiceSelector = '.acf-taxonomy-field .select2-selection__choice';
@@ -64,7 +64,7 @@ module.exports = {
                 browser.execute(
                     function() {
 
-                        var select2Target = (parseFloat(YoastACFAnalysisConfig.acfVersion, 10) >= 5.6)?'select':'input';
+                        var select2Target = (parseFloat(acf.select2.version, 10) >= 4)?'select':'input';
 
                         return jQuery('.acf-taxonomy-field[data-type="multi_select"] ' + select2Target).select2('data')[0].text
                     },

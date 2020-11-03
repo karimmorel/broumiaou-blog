@@ -1,3 +1,5 @@
+/* globals YoastACFAnalysisConfig */
+
 module.exports = {
     url: function() {
         return this.api.launchUrl + '/wp/wp-login.php';
