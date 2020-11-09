@@ -36,9 +36,9 @@ if (!empty($previous_post)){
 				</div>
 				<div id="article-content">
                     <div id="article-gradient"></div>
-					<div id="article-title-map">
+					<!-- <div id="article-title-map">
 						<h1><?php the_title(); ?></h1>
-					</div>
+					</div> -->
 				<?php } else { ?>
 					<div id="main-photo">
 					</div>

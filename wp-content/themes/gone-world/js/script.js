@@ -3,14 +3,21 @@ $ = jQuery;
 $(document).ready(function(){
 
 //Set Main Google Map's height
-$('#main-map').css({'height':$(window).height()});
+if($(window).width() > 700)
+{
+	$('#main-map').css({'height':$(window).height()});
+}
+else
+{
+	$('#main-map').css({'height':$(window).height()/1.6});
+}
 
 // Show first article in thumbnail container
 $('.article-container').first().fadeIn();
 
 //Set Article's thumbnail container's height (if display = computer)
-var thumbnailContainerHeight = $(window).height()*.9;
-$('.thumbnail-container').css({'height':thumbnailContainerHeight});
+// var thumbnailContainerHeight = $(window).height()*.9;
+// $('.thumbnail-container').css({'height':thumbnailContainerHeight});
 
 
 $('#article-categories li').click(function(){

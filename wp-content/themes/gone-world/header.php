@@ -25,7 +25,7 @@
 			<nav id="menu" role="navigation">
 				<div class="nav-container">
 					<div id="home-link">
-					<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h1>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><img id="broumiaou-logo" src="<?php  echo get_stylesheet_directory_uri(); ?>/img/logo-broumiaou-min.png" /></a>
 				</div>
 			</div>
 		</nav>

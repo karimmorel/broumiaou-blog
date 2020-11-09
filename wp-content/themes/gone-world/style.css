@@ -40,7 +40,7 @@
  nav
  {
  	width:100%;
- 	height:62px;
+ 	height:100px;
  	position:fixed;
  	top:0px;
  	left:0;
@@ -56,12 +56,14 @@
  {
 	position:absolute;
 	display:block;
-	padding:0 12px 0 14px;
-	font-size:14px;
  	left:5%;
- 	top:9px;
- 	background:white;
- 	border:2px solid black;
+ 	top:25px;
+	 background:white;
+	 cursor:pointer;
+ }
+ #home-link img
+ {
+	cursor:pointer;
  }
  .nav-container
  {
@@ -89,16 +91,56 @@
  {
  	padding:6px;
  }
- nav h1
- {
- 	line-height: 40px;
- }
  nav a
  {
  	text-decoration: none;
  	color:black;
  	font: sans-serif;
  }
+ #broumiaou-logo
+ {
+	 width:64px;
+	 height:64px;
+	 display:block;
+	 background:linear-gradient(210deg,#192a56, #182C61, #273c75, #3B3B98, #6c5ce7, #7d5fff, #1B9CFC, #a29bfe, #D6A2E8, #fab1a0, #ff7675, #d63031, #ff3838);
+	 background-size: 10000% 10000%;
+    -webkit-animation: couleur 100s ease infinite;
+    -moz-animation: couleur 100s ease infinite;
+    animation: couleur 100s ease infinite;
+ }
+ .home
+ {
+	 background:rgba(248,248,248,1);
+ }
+ @-webkit-keyframes couleur {
+    0%,
+    100% {
+        background-position: 68% 0
+    }
+    50% {
+        background-position: 33% 100%
+    }
+}
+
+@-moz-keyframes couleur {
+    0%,
+    100% {
+        background-position: 68% 0
+    }
+    50% {
+        background-position: 33% 100%
+    }
+}
+
+@keyframes couleur {
+    0%,
+    100% {
+        background-position: 68% 0
+    }
+    50% {
+        background-position: 33% 100%
+    }
+}
 
 
 
@@ -106,44 +148,60 @@
 
  /* article's thumbnail container */
 
- .thumbnail-container
+ #articles-container
  {
 	 width:90%;
+	 flex-wrap:wrap;
+	 align-items:flex-start;
+	 justify-content: flex-start;
 	 margin:auto;
-	 margin-top:40px;
+	 margin-top:128px;
+	 position:relative;
+	 display:flex;
+	 justify-content:flex-start;
+	 align-items: flex-start;
+	 background:white;
+	 margin-bottom:80px;
+ }
+ .thumbnail-container
+ {
+	 box-sizing: border-box;
+	 padding:32px;
+	 width:30%;
+	 max-width:30%;
+	 min-width:315px;
+	 margin-left:auto;
+	 margin-right:auto;
  	overflow-y: hidden;
  	position: relative;
- 	background:#3D444E;
- 	-webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
- 	-moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
- 	box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
  }
  .thumbnail-container .article-container .text-container
  {
  	z-index:3;
- 	position:absolute;
- 	bottom:20%;
- 	left:0;
- 	padding:32px;
- 	color:white;
+ 	padding-top:32px;
  }
  .thumbnail-container .article-container .text-container h1
  {
- 	font-size:42px;
- 	font-weight: 500;
+ 	font-size:24px;
+	 font-weight: 500;
+	 line-height:28px;
+ }
+ .thumbnail-container .article-container .text-container .sep
+ {
+	 background:#333;
  }
  .thumbnail-container .article-container .text-container blockquote
  {
  	font-size:18px;
- 	font-weight: 300;
+	 font-weight: 300;
+	 text-align: justify;
  }
  .thumbnail-container .article-container .text-container .view-more
  {
  	background:transparent;
- 	border:1px solid white;
+ 	border:1px solid black;
  	margin: 16px 0 16px 0;
  	padding:6px;
- 	color:white;
  	font-size:18px;
  	font-weight:100;
  	border-radius:3px;
@@ -434,7 +492,6 @@
  }
  #article-background
  {
-	 margin-top:-20px;
  	 padding-top:64px;
 	 background:rgb(248,248,248);
 	 padding-bottom:160px;
@@ -531,9 +588,6 @@
   margin:auto;
   margin-top:64px;
   display:flex;
-  -webkit-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
-  box-shadow: 0px 10px 45px -4px rgba(0,0,0,0.2);
 }
 #article-more a
 {
@@ -659,6 +713,12 @@ img
   {
   	top:-64px;
   }
+  .thumbnail-container
+  {
+	  width: 90%;
+	  max-width:90%;
+	  min-width:auto;
+  }
   .thumbnail-container .article-container .text-container h1
   {
   	font-size:24px;
@@ -712,6 +772,16 @@ img
   {
     height:200px;
     padding-top:50px;
+  }
+
+  #main-photo
+  {
+	  height:360px;
+  }
+  #article-gradient
+  {
+	  height:160px;
+	  margin-top:-160px;
   }
 
 
