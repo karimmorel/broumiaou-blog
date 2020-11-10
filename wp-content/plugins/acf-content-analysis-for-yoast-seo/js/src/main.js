@@ -1,12 +1,10 @@
-/* global jQuery, YoastSEO, YoastACFAnalysis: true */
+/* global jQuery, YoastSEO, wp, YoastACFAnalysis: true */
 /* exported YoastACFAnalysis */
 
 var App = require( "./app.js" );
 
-( function( $ ) {
-	$( document ).ready( function() {
-		if ( "undefined" !== typeof YoastSEO ) {
-			YoastACFAnalysis = new App();
-		}
-	} );
-}( jQuery ) );
+wp.domReady( function() {
+	if ( "undefined" !== typeof YoastSEO ) {
+		YoastACFAnalysis = new App();
+	}
+} );

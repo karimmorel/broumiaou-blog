@@ -32,7 +32,8 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'URL'                         => '(string) Full URL to the site',
 		'user_can_manage'             => '(bool) The current user can manage this site', // deprecated.
 		'capabilities'                => '(array) Array of capabilities for the current user on this site.',
-		'jetpack'                     => '(bool)  Whether the site is a Jetpack site or not',
+		'jetpack'                     => '(bool) Whether the site is a Jetpack site or not',
+		'jetpack_connection'          => '(bool) Whether the site is connected to WP.com via `jetpack-connection`',
 		'is_multisite'                => '(bool) Whether the site is a Multisite site or not. Always true for WP.com sites.',
 		'post_count'                  => '(int) The number of posts the site has',
 		'subscribers_count'           => '(int) The number of subscribers the site has',
@@ -56,7 +57,6 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'is_fse_active'               => '(bool) If the site has Full Site Editing active or not.',
 		'is_fse_eligible'             => '(bool) If the site is capable of Full Site Editing or not',
 		'is_core_site_editor_enabled' => '(bool) If the site has the core site editor enabled.',
-		'is_white_glove'              => '(bool) If the product being purchased is coming from the white glove offer, check pau2Xa-13X-p2',
 	);
 
 	protected static $no_member_fields = array(
@@ -65,6 +65,7 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'description',
 		'URL',
 		'jetpack',
+		'jetpack_connection',
 		'post_count',
 		'subscribers_count',
 		'lang',
@@ -125,6 +126,7 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'jetpack_frame_nonce',
 		'page_on_front',
 		'page_for_posts',
+		'wpcom_public_coming_soon_page_id',
 		'headstart',
 		'headstart_is_fresh',
 		'ak_vp_bundle_enabled',
@@ -146,6 +148,7 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 		'is_wpforteams_site',
 		'site_creation_flow',
 		'is_cloud_eligible',
+		'selected_features',
 	);
 
 	protected static $jetpack_response_field_additions = array(
@@ -372,8 +375,11 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 			case 'locale' :
 				$response[ $key ] = $is_user_logged_in ? $this->site->get_locale() : false;
 				break;
-			case 'jetpack' :
+			case 'jetpack':
 				$response[ $key ] = $this->site->is_jetpack();
+				break;
+			case 'jetpack_connection':
+				$response[ $key ] = $this->site->is_jetpack_connection();
 				break;
 			case 'single_user_site' :
 				$response[ $key ] = $this->site->is_single_user_site();
@@ -412,9 +418,6 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 				break;
 			case 'is_core_site_editor_enabled':
 				$response[ $key ] = $this->site->is_core_site_editor_enabled();
-				break;
-			case 'is_white_glove':
-				$response[ $key ] = $this->site->is_white_glove();
 				break;
 		}
 
@@ -551,6 +554,9 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 						$options[ $key ] = $site->get_page_for_posts();
 					}
 					break;
+				case 'wpcom_public_coming_soon_page_id':
+					$options[ $key ] = $site->get_wpcom_public_coming_soon_page_id();
+					break;
 				case 'headstart' :
 					$options[ $key ] = $site->is_headstart();
 					break;
@@ -631,6 +637,12 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 				case 'is_cloud_eligible':
 					$options[ $key ] = $site->is_cloud_eligible();
 					break;
+				case 'selected_features':
+					$selected_features = $site->get_selected_features();
+					if ( $selected_features ) {
+						$options[ $key ] = $selected_features;
+					}
+					break;
 			}
 		}
 
@@ -660,9 +672,6 @@ class WPCOM_JSON_API_GET_Site_Endpoint extends WPCOM_JSON_API_Endpoint {
 	public function decorate_jetpack_response( &$response ) {
 		$this->site = $this->get_platform()->get_site( $response->ID );
 		switch_to_blog( $this->site->get_id() );
-
-		// ensure the response is marked as being from Jetpack
-		$response->jetpack = true;
 
 		$wpcom_response = $this->render_response_keys( self::$jetpack_response_field_additions );
 

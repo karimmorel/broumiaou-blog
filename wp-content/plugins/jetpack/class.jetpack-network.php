@@ -205,8 +205,9 @@ class Jetpack_Network {
 			if ( ! in_array( 'jetpack/jetpack.php', $active_plugins, true ) ) {
 				Jetpack::disconnect();
 			}
+			restore_current_blog();
 		}
-		restore_current_blog();
+
 	}
 
 	/**
@@ -455,7 +456,7 @@ class Jetpack_Network {
 			return;
 		}
 
-		if ( ( new Status() )->is_development_mode() ) {
+		if ( ( new Status() )->is_offline_mode() ) {
 			return;
 		}
 
@@ -566,7 +567,7 @@ class Jetpack_Network {
 		restore_current_blog();
 
 		// If we are in dev mode, just show the notice and bail.
-		if ( ( new Status() )->is_development_mode() ) {
+		if ( ( new Status() )->is_offline_mode() ) {
 			Jetpack::show_development_mode_notice();
 			return;
 		}

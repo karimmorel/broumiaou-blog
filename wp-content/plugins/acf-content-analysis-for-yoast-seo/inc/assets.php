@@ -23,7 +23,7 @@ class Yoast_ACF_Analysis_Assets {
 	public function init() {
 		$this->plugin_data = get_plugin_data( AC_SEO_ACF_ANALYSIS_PLUGIN_FILE );
 
-		add_filter( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ], 11 );
 	}
 
 	/**
@@ -38,11 +38,14 @@ class Yoast_ACF_Analysis_Assets {
 		$config = Yoast_ACF_Analysis_Facade::get_registry()->get( 'config' );
 
 		// Post page enqueue.
-		if ( wp_script_is( WPSEO_Admin_Asset_Manager::PREFIX . 'post-edit' ) ) {
+		if (
+			wp_script_is( WPSEO_Admin_Asset_Manager::PREFIX . 'post-edit' ) ||
+			wp_script_is( WPSEO_Admin_Asset_Manager::PREFIX . 'post-edit-classic' )
+		) {
 			wp_enqueue_script(
 				'yoast-acf-analysis-post',
 				plugins_url( '/js/yoast-acf-analysis.js', AC_SEO_ACF_ANALYSIS_PLUGIN_FILE ),
-				[ 'jquery', WPSEO_Admin_Asset_Manager::PREFIX . 'post-edit', 'underscore' ],
+				[ 'jquery', 'underscore' ],
 				$this->plugin_data['Version'],
 				true
 			);

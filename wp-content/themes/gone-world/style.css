@@ -104,9 +104,9 @@
 	 display:block;
 	 background:linear-gradient(210deg,#192a56, #182C61, #273c75, #3B3B98, #6c5ce7, #7d5fff, #1B9CFC, #a29bfe, #D6A2E8, #fab1a0, #ff7675, #d63031, #ff3838);
 	 background-size: 10000% 10000%;
-    -webkit-animation: couleur 100s ease infinite;
-    -moz-animation: couleur 100s ease infinite;
-    animation: couleur 100s ease infinite;
+    -webkit-animation: couleur 60s ease infinite;
+    -moz-animation: couleur 60s ease infinite;
+    animation: couleur 60s ease infinite;
  }
  .home
  {
@@ -195,6 +195,7 @@
  	font-size:18px;
 	 font-weight: 300;
 	 text-align: justify;
+	 line-height:24px;
  }
  .thumbnail-container .article-container .text-container .view-more
  {
@@ -726,7 +727,7 @@ img
   .thumbnail-container .article-container .text-container blockquote
   {
   	font-size:14px;
-  	line-height:22px;
+  	line-height:24px;
   }
   #article-title h1, #article-title-map h1
   {

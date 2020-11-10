@@ -22,15 +22,6 @@ class WPSEO_Utils {
 	public static $has_filters;
 
 	/**
-	 * Notifications to be shown in the JavaScript console.
-	 *
-	 * @since 3.3.2
-	 *
-	 * @var array
-	 */
-	protected static $console_notifications = [];
-
-	/**
 	 * Check whether the current user is allowed to access the configuration.
 	 *
 	 * @since 1.8.0
@@ -113,49 +104,6 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Register a notification to be shown in the JavaScript console.
-	 *
-	 * @since 3.3.2
-	 *
-	 * @param string $identifier    Notification identifier.
-	 * @param string $message       Message to be shown.
-	 * @param bool   $one_time_only Only show once (if added multiple times).
-	 */
-	public static function javascript_console_notification( $identifier, $message, $one_time_only = false ) {
-		static $registered_hook;
-
-		if ( is_null( $registered_hook ) ) {
-			add_action( 'admin_footer', [ __CLASS__, 'localize_console_notices' ], 999 );
-			$registered_hook = true;
-		}
-
-		$prefix = 'Yoast SEO: ';
-		if ( substr( $message, 0, strlen( $prefix ) ) !== $prefix ) {
-			$message = $prefix . $message;
-		}
-
-		if ( $one_time_only ) {
-			self::$console_notifications[ $identifier ] = $message;
-		}
-		else {
-			self::$console_notifications[] = $message;
-		}
-	}
-
-	/**
-	 * Localize the console notifications to JavaScript.
-	 *
-	 * @since 3.3.2
-	 */
-	public static function localize_console_notices() {
-		if ( empty( self::$console_notifications ) ) {
-			return;
-		}
-
-		wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'admin-global-script', 'wpseoConsoleNotifications', array_values( self::$console_notifications ) );
-	}
-
-	/**
 	 * Check whether a url is relative.
 	 *
 	 * @since 1.8.0
@@ -165,55 +113,25 @@ class WPSEO_Utils {
 	 * @return bool
 	 */
 	public static function is_url_relative( $url ) {
-		return ( strpos( $url, 'http' ) !== 0 && strpos( $url, '//' ) !== 0 );
+		return YoastSEO()->helpers->url->is_relative( $url );
 	}
 
 	/**
 	 * List all the available user roles.
 	 *
 	 * @since 1.8.0
+	 * @deprecated 15.0
+	 * @codeCoverageIgnore
 	 *
 	 * @return array $roles
 	 */
 	public static function get_roles() {
-		global $wp_roles;
-
-		if ( ! isset( $wp_roles ) ) {
-			$wp_roles = new WP_Roles();
-		}
+		_deprecated_function( __METHOD__, '15.0', 'wp_roles()->get_names()' );
+		$wp_roles = wp_roles();
 
 		$roles = $wp_roles->get_names();
 
 		return $roles;
-	}
-
-	/**
-	 * Standardize whitespace in a string.
-	 *
-	 * Replace line breaks, carriage returns, tabs with a space, then remove double spaces.
-	 *
-	 * @since 1.8.0
-	 *
-	 * @param string $string String input to standardize.
-	 *
-	 * @return string
-	 */
-	public static function standardize_whitespace( $string ) {
-		return trim( str_replace( '  ', ' ', str_replace( [ "\t", "\n", "\r", "\f" ], ' ', $string ) ) );
-	}
-
-	/**
-	 * First strip out registered and enclosing shortcodes using native WordPress strip_shortcodes function.
-	 * Then strip out the shortcodes with a filthy regex, because people don't properly register their shortcodes.
-	 *
-	 * @since 1.8.0
-	 *
-	 * @param string $text Input string that might contain shortcodes.
-	 *
-	 * @return string $text String without shortcodes.
-	 */
-	public static function strip_shortcode( $text ) {
-		return preg_replace( '`\[[^\]]+\]`s', '', strip_shortcodes( $text ) );
 	}
 
 	/**
@@ -308,7 +226,7 @@ class WPSEO_Utils {
 		 * @param string $filtered The sanitized string.
 		 * @param string $str      The string prior to being sanitized.
 		 */
-		return apply_filters( 'sanitize_text_field', $filtered, $value );
+		return apply_filters( 'sanitize_text_field', $filtered, $value ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- Using WP native filter.
 	}
 
 	/**
@@ -522,6 +440,7 @@ class WPSEO_Utils {
 			return $value;
 		}
 		elseif ( is_float( $value ) ) {
+			// phpcs:ignore WordPress.PHP.StrictComparisons -- Purposeful loose comparison.
 			if ( (int) $value == $value && ! is_nan( $value ) ) {
 				return (int) $value;
 			}
@@ -657,7 +576,7 @@ class WPSEO_Utils {
 				if ( $bc ) {
 					$result = bcdiv( $number1, $number2, $precision ); // String, or NULL if right_operand is 0.
 				}
-				elseif ( $number2 != 0 ) {
+				elseif ( $number2 != 0 ) { // phpcs:ignore WordPress.PHP.StrictComparisons -- Purposeful loose comparison.
 					$result = ( $number1 / $number2 );
 				}
 
@@ -672,7 +591,7 @@ class WPSEO_Utils {
 				if ( $bc ) {
 					$result = bcmod( $number1, $number2 ); // String, or NULL if modulus is 0.
 				}
-				elseif ( $number2 != 0 ) {
+				elseif ( $number2 != 0 ) { // phpcs:ignore WordPress.PHP.StrictComparisons -- Purposeful loose comparison.
 					$result = ( $number1 % $number2 );
 				}
 
@@ -689,6 +608,7 @@ class WPSEO_Utils {
 					$result = bccomp( $number1, $number2, $precision ); // Returns int 0, 1 or -1.
 				}
 				else {
+					// phpcs:ignore WordPress.PHP.StrictComparisons -- Purposeful loose comparison.
 					$result = ( $number1 == $number2 ) ? 0 : ( ( $number1 > $number2 ) ? 1 : -1 );
 				}
 				break;
@@ -703,6 +623,7 @@ class WPSEO_Utils {
 					}
 				}
 				else {
+					// phpcs:ignore WordPress.PHP.StrictComparisons -- Purposeful loose comparison.
 					$result = ( intval( $result ) == $result ) ? intval( $result ) : floatval( $result );
 				}
 			}
@@ -808,35 +729,7 @@ class WPSEO_Utils {
 	 * @return string
 	 */
 	public static function get_site_name() {
-		return wp_strip_all_tags( get_bloginfo( 'name' ), true );
-	}
-
-	/**
-	 * Retrieves the title separator.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @return string
-	 */
-	public static function get_title_separator() {
-		$replacement = WPSEO_Options::get_default( 'wpseo_titles', 'separator' );
-
-		// Get the titles option and the separator options.
-		$separator         = WPSEO_Options::get( 'separator' );
-		$seperator_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
-
-		// This should always be set, but just to be sure.
-		if ( isset( $seperator_options[ $separator ] ) ) {
-			// Set the new replacement.
-			$replacement = $seperator_options[ $separator ];
-		}
-
-		/**
-		 * Filter: 'wpseo_replacements_filter_sep' - Allow customization of the separator character(s).
-		 *
-		 * @api string $replacement The current separator.
-		 */
-		return apply_filters( 'wpseo_replacements_filter_sep', $replacement );
+		return YoastSEO()->helpers->site->get_site_name();
 	}
 
 	/**
@@ -847,14 +740,7 @@ class WPSEO_Utils {
 	 * @return bool
 	 */
 	public static function is_yoast_seo_page() {
-		static $is_yoast_seo;
-
-		if ( $is_yoast_seo === null ) {
-			$current_page = filter_input( INPUT_GET, 'page' );
-			$is_yoast_seo = ( substr( $current_page, 0, 6 ) === 'wpseo_' );
-		}
-
-		return $is_yoast_seo;
+		return YoastSEO()->helpers->current_page->is_yoast_seo_page();
 	}
 
 	/**
@@ -932,28 +818,7 @@ class WPSEO_Utils {
 	 * @return string Home URL with optional path, appropriately slashed if not.
 	 */
 	public static function home_url( $path = '', $scheme = null ) {
-
-		$home_url = home_url( $path, $scheme );
-
-		if ( ! empty( $path ) ) {
-			return $home_url;
-		}
-
-		$home_path = wp_parse_url( $home_url, PHP_URL_PATH );
-
-		if ( $home_path === '/' ) { // Home at site root, already slashed.
-			return $home_url;
-		}
-
-		if ( is_null( $home_path ) ) { // Home at site root, always slash.
-			return trailingslashit( $home_url );
-		}
-
-		if ( is_string( $home_path ) ) { // Home in subdirectory, slash if permalink structure has slash.
-			return user_trailingslashit( $home_url );
-		}
-
-		return $home_url;
+		return YoastSEO()->helpers->url->home( $path, $scheme );
 	}
 
 	/**
@@ -1147,7 +1012,7 @@ SVG;
 			return $post->post_type;
 		}
 		elseif ( isset( $_GET['post_type'] ) ) {
-			return sanitize_text_field( $_GET['post_type'] );
+			return sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
 		}
 
 		return '';
@@ -1191,14 +1056,15 @@ SVG;
 		}
 
 		$wpseo_admin_l10n = [
-			'displayAdvancedTab'   => WPSEO_Capability_Utils::current_user_can( 'wpseo_edit_advanced_metadata' ) || ! WPSEO_Options::get( 'disableadvanced_meta' ),
-			'noIndex'              => ! ! $no_index,
-			'isPremium'            => self::is_yoast_seo_premium(),
-			'isPostType'           => ! ! get_post_type(),
-			'postTypeNamePlural'   => ( $page_type === 'post' ) ? $label_object->label : $label_object->name,
-			'postTypeNameSingular' => ( $page_type === 'post' ) ? $label_object->labels->singular_name : $label_object->singular_name,
-			'breadcrumbsDisabled'  => WPSEO_Options::get( 'breadcrumbs-enable', false ) !== true && ! current_theme_supports( 'yoast-seo-breadcrumbs' ),
-			'privateBlog'          => ( (string) get_option( 'blog_public' ) ) === '0',
+			'displayAdvancedTab'    => WPSEO_Capability_Utils::current_user_can( 'wpseo_edit_advanced_metadata' ) || ! WPSEO_Options::get( 'disableadvanced_meta' ),
+			'noIndex'               => (bool) $no_index,
+			'isPostType'            => (bool) get_post_type(),
+			'postType'              => get_post_type(),
+			'postTypeNamePlural'    => ( $page_type === 'post' ) ? $label_object->label : $label_object->name,
+			'postTypeNameSingular'  => ( $page_type === 'post' ) ? $label_object->labels->singular_name : $label_object->singular_name,
+			'isBreadcrumbsDisabled' => WPSEO_Options::get( 'breadcrumbs-enable', false ) !== true && ! current_theme_supports( 'yoast-seo-breadcrumbs' ),
+			// phpcs:ignore Generic.ControlStructures.DisallowYodaConditions -- Bug: squizlabs/PHP_CodeSniffer#2962.
+			'isPrivateBlog'         => ( (string) get_option( 'blog_public' ) ) === '0',
 		];
 
 		$additional_entries = apply_filters( 'wpseo_admin_l10n', [] );
@@ -1267,9 +1133,12 @@ SVG;
 	 * @codeCoverageIgnore
 	 *
 	 * @return bool True if access_tokens are supported.
+	 *
+	 * @deprecated 15.0
 	 */
 	public static function has_access_token_support() {
-		return class_exists( 'WPSEO_MyYoast_Client' );
+		_deprecated_function( __METHOD__, 'WPSEO 15.0' );
+		return false;
 	}
 
 	/**
@@ -1293,6 +1162,7 @@ SVG;
 			$data = apply_filters( 'wpseo_debug_json_data', $data );
 		}
 
+		// phpcs:ignore Yoast.Yoast.AlternativeFunctions.json_encode_wp_json_encodeWithAdditionalParams -- This is the definition of format_json_encode.
 		return wp_json_encode( $data, $flags );
 	}
 
@@ -1498,5 +1368,77 @@ SVG;
 		$enabled_features = apply_filters( 'wpseo_enable_feature', $enabled_features );
 
 		return $enabled_features;
+	}
+
+	/**
+	 * Standardize whitespace in a string.
+	 *
+	 * Replace line breaks, carriage returns, tabs with a space, then remove double spaces.
+	 *
+	 * @deprecated 15.2
+	 * @codeCoverageIgnore
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string $string String input to standardize.
+	 *
+	 * @return string
+	 */
+	public static function standardize_whitespace( $string ) {
+		_deprecated_function( __METHOD__, 'WPSEO 15.2' );
+
+		return YoastSEO()->helpers->string->standardize_whitespace( $string );
+	}
+
+	/**
+	 * First strip out registered and enclosing shortcodes using native WordPress strip_shortcodes function.
+	 * Then strip out the shortcodes with a filthy regex, because people don't properly register their shortcodes.
+	 *
+	 * @deprecated 15.2
+	 * @codeCoverageIgnore
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string $text Input string that might contain shortcodes.
+	 *
+	 * @return string $text String without shortcodes.
+	 */
+	public static function strip_shortcode( $text ) {
+		_deprecated_function( __METHOD__, 'WPSEO 15.2' );
+
+		return YoastSEO()->helpers->string->strip_shortcode( $text );
+	}
+
+	/**
+	 * Retrieves the title separator.
+	 *
+	 * @deprecated 15.2
+	 * @codeCoverageIgnore
+	 *
+	 * @since 3.0.0
+	 *
+	 * @return string
+	 */
+	public static function get_title_separator() {
+		_deprecated_function( __METHOD__, 'WPSEO 15.2' );
+
+		$replacement = WPSEO_Options::get_default( 'wpseo_titles', 'separator' );
+
+		// Get the titles option and the separator options.
+		$separator         = WPSEO_Options::get( 'separator' );
+		$seperator_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
+
+		// This should always be set, but just to be sure.
+		if ( isset( $seperator_options[ $separator ] ) ) {
+			// Set the new replacement.
+			$replacement = $seperator_options[ $separator ];
+		}
+
+		/**
+		 * Filter: 'wpseo_replacements_filter_sep' - Allow customization of the separator character(s).
+		 *
+		 * @api string $replacement The current separator.
+		 */
+		return apply_filters( 'wpseo_replacements_filter_sep', $replacement );
 	}
 }

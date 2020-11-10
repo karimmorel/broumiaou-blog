@@ -36,8 +36,12 @@
 .contact-form input[type='radio'],
 .contact-form input[type='checkbox'] {
 	float: none;
-	margin-bottom: 1em;
-	vertical-align: middle;
+	margin: 0 0.75rem 0 5px;
+}
+
+.contact-form input[type='checkbox'] {
+	top: 0;
+	margin-left: 0;
 }
 
 .contact-form label {
@@ -47,16 +51,22 @@
 	display: block;
 }
 
+.contact-form label.consent-implicit input {
+	display: none;
+}
+
 .contact-form label.checkbox,
 .contact-form label.checkbox-multiple,
 .contact-form label.radio {
 	margin-bottom: 0.25em;
 	float: none;
 	font-weight: normal;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 }
 
 .contact-form .grunion-field-checkbox-wrap,
+.contact-form .grunion-field-consent-wrap,
 .contact-form .grunion-field-checkbox-multiple-wrap,
 .contact-form .grunion-field-radio-wrap {
 	margin-bottom: 1em;
@@ -137,7 +147,7 @@
 	flex: 0 0 75%;
 }
 
-.grunion-field-checkbox-wrap {
+.grunion-field-checkbox-wrap, .grunion-field-consent-wrap {
 	align-self: center;
 }
 

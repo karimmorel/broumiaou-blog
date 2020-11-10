@@ -9,6 +9,7 @@
 
 namespace Automattic\Jetpack\Extensions\Button;
 
+use Automattic\Jetpack\Blocks;
 use Jetpack_Gutenberg;
 
 const FEATURE_NAME = 'button';
@@ -38,6 +39,10 @@ add_action( 'init', __NAMESPACE__ . '\register_block' );
 function render_block( $attributes, $content ) {
 	$save_in_post_content = get_attribute( $attributes, 'saveInPostContent' );
 
+	if ( Blocks::is_amp_request() ) {
+		Jetpack_Gutenberg::load_styles_as_required( FEATURE_NAME );
+	}
+
 	if ( $save_in_post_content || ! class_exists( 'DOMDocument' ) ) {
 		return $content;
 	}
@@ -46,7 +51,7 @@ function render_block( $attributes, $content ) {
 	$text      = get_attribute( $attributes, 'text' );
 	$unique_id = get_attribute( $attributes, 'uniqueId' );
 	$url       = get_attribute( $attributes, 'url' );
-	$classes   = Jetpack_Gutenberg::block_classes( FEATURE_NAME, $attributes );
+	$classes   = Blocks::classes( FEATURE_NAME, $attributes );
 
 	$button_classes = get_button_classes( $attributes );
 	$button_styles  = get_button_styles( $attributes );

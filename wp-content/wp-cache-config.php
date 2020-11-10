@@ -5,6 +5,7 @@ WP-Cache Config Sample File
 See wp-cache.php for author details.
 */
 
+$wpsc_version = 169;
 $wp_cache_mobile_groups = '';
 $wp_cache_home_path = '/blog/';
 $wp_cache_slash_check = 1;

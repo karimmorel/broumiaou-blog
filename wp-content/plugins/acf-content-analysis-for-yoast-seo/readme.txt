@@ -2,10 +2,10 @@
 Contributors: yoast, angrycreative, kraftner, marcusforsberg, viktorfroberg, joostdevalk, atimmer, jipmoors, theorboman
 Tags: Yoast, SEO, ACF, Advanced Custom Fields, analysis, Search Engine Optimization
 Requires at least: 5.2
-Tested up to: 5.4
+Tested up to: 5.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Stable tag: 2.5
+Stable tag: 3.0
 Requires PHP: 5.6.20
 
 WordPress plugin that adds the content of all ACF fields to the Yoast SEO score analysis.
@@ -54,6 +54,36 @@ Previously called Yoast ACF Analysis.
 });`
 
 == Changelog ==
+
+= 3.0.0 =
+
+Released September 29th, 2020
+
+Bugfixes:
+
+* Fixes a bug where the content of ACF fields wouldn't be included in the SEO and readability analysis when using the Classic Editor plugin.
+* Fixes a bug where changes to the content of ACF fields wouldn't trigger a live refresh of the SEO and readability analysis.
+
+Other:
+
+* No longer supports ACF versions below 5.7.
+
+= 2.7.0 =
+
+Released September 1st, 2020
+
+Other:
+
+* Compatibility with Yoast SEO 14.9.
+
+
+= 2.6.0 =
+
+Released August 4th, 2020
+
+Bugfixes:
+
+* Fixes a bug where the content of ACF blocks in 'auto' mode was not taken into account when the block (automatically) switched to preview mode. Props to [TimVevida](https://github.com/TimVevida).
 
 = 2.5.0 =
 

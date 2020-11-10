@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once dirname( __FILE__ ) . '/class.jetpack-search-helpers.php';
 require_once dirname( __FILE__ ) . '/class-jetpack-search-options.php';
-require_once dirname( __FILE__ ) . '/customize-controls/class-label-control.php';
 
 /**
  * Class to customize search on the site.
@@ -37,6 +37,8 @@ class Jetpack_Search_Customize {
 	 * @param WP_Customize_Manager $wp_customize Customizer instance.
 	 */
 	public function customize_register( $wp_customize ) {
+		require_once dirname( __FILE__ ) . '/customize-controls/class-label-control.php';
+		require_once dirname( __FILE__ ) . '/customize-controls/class-excluded-post-types-control.php';
 		$section_id     = 'jetpack_search';
 		$setting_prefix = Jetpack_Search_Options::OPTION_PREFIX;
 
@@ -107,14 +109,34 @@ class Jetpack_Search_Customize {
 		$wp_customize->add_control(
 			$id,
 			array(
-				'label'       => __( 'Search Overlay Trigger', 'jetpack' ),
+				'label'       => __( 'Search Input Overlay Trigger', 'jetpack' ),
 				'description' => __( 'Select when your overlay should appear.', 'jetpack' ),
 				'section'     => $section_id,
 				'type'        => 'select',
 				'choices'     => array(
-					'immediate' => __( 'Open immediately', 'jetpack' ),
+					'immediate' => __( 'Open when the user starts typing', 'jetpack' ),
 					'results'   => __( 'Open when results are available', 'jetpack' ),
 				),
+			)
+		);
+
+		$id = $setting_prefix . 'excluded_post_types';
+		$wp_customize->add_setting(
+			$id,
+			array(
+				'default' => '',
+				'type'    => 'option',
+			)
+		);
+		$wp_customize->add_control(
+			new Excluded_Post_Types_Control(
+				$wp_customize,
+				$id,
+				array(
+					'description' => __( 'Choose post types to exclude from search results.', 'jetpack' ),
+					'label'       => __( 'Excluded Post Types', 'jetpack' ),
+					'section'     => $section_id,
+				)
 			)
 		);
 
@@ -206,10 +228,11 @@ class Jetpack_Search_Customize {
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => '1',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'transport'         => 'postMessage',
-				'type'              => 'option',
+				'default'              => '1',
+				'sanitize_callback'    => array( 'Jetpack_Search_Helpers', 'sanitize_checkbox_value' ),
+				'sanitize_js_callback' => array( 'Jetpack_Search_Helpers', 'sanitize_checkbox_value_for_js' ),
+				'transport'            => 'postMessage',
+				'type'                 => 'option',
 			)
 		);
 		$wp_customize->add_control(
@@ -225,10 +248,11 @@ class Jetpack_Search_Customize {
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => '1',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'transport'         => 'postMessage',
-				'type'              => 'option',
+				'default'              => '1',
+				'sanitize_callback'    => array( 'Jetpack_Search_Helpers', 'sanitize_checkbox_value' ),
+				'sanitize_js_callback' => array( 'Jetpack_Search_Helpers', 'sanitize_checkbox_value_for_js' ),
+				'transport'            => 'postMessage',
+				'type'                 => 'option',
 			)
 		);
 		$wp_customize->add_control(
@@ -244,10 +268,11 @@ class Jetpack_Search_Customize {
 		$wp_customize->add_setting(
 			$id,
 			array(
-				'default'           => '1',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'transport'         => 'postMessage',
-				'type'              => 'option',
+				'default'              => '1',
+				'sanitize_callback'    => array( 'Jetpack_Search_Helpers', 'sanitize_checkbox_value' ),
+				'sanitize_js_callback' => array( 'Jetpack_Search_Helpers', 'sanitize_checkbox_value_for_js' ),
+				'transport'            => 'postMessage',
+				'type'                 => 'option',
 			)
 		);
 		$wp_customize->add_control(
