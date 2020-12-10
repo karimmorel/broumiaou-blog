@@ -716,8 +716,8 @@ img
   }
   .thumbnail-container
   {
-	  width: 90%;
-	  max-width:90%;
+	  width: 100%;
+	  max-width:100%;
 	  min-width:auto;
   }
   .thumbnail-container .article-container .text-container h1
